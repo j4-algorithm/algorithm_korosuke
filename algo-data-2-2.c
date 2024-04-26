@@ -1,60 +1,56 @@
 #include<stdio.h>
-#include<stdbool.h>
+
+int num(double x ){
+    int a = (int)x;
+    if(x == a){
+        return a;
+    }else{
+        return a + 1;
+    }
+}
 
 int main(void)
 {
-    bool flag = true;
-    int num1 = 0,num2 = 0, num3 = 0, num4 = 0, num5 = 0;
+    int first = 0;
+    int harf = 0;
+    int end = 0;
+    int num_balls = 0;
     int balls[10000] = {0};
-    int balls2[10000] = {0};
-    scanf("%d",&num1);
-    for (int i = 0; i < num1; i++)
+    scanf("%d",&end);
+    for (int i = 0; i < end; i++)
     {
         scanf("%d",&balls[i]);
     }
-
-    for(int i = 0; i < num1; i++)
-    {
-        num5 = num5 + balls[i];
-    }
-
-    printf("%d\n", num5);
-
-    while (flag)
-    {
-        num2 = num1 / 2;
-        for (int i = num2; i > 0; i--)
+    for(int i = 0; i < end; i++)
         {
-            balls2[num2 - i] = balls[num1 - i];
-            balls[num1 - i] = 0;
+            num_balls = num_balls + balls[i];
         }
-        num1 = num1 - num2;
-        for(int i = 0; i < num1; i++)
+    printf("%d\n", num_balls);
+
+    while (end - first > 1)
+    {
+        harf = num((first+end) / 2.0);
+        num_balls = 0;
+        for(int i = first; i < harf; i++)
         {
-            num3 = num3 + balls[i];
-            num4 = num4 + balls2[i];
+            num_balls = num_balls + balls[i];
         }
-        if(num3 % 100 != 0)
+        if (num_balls % 100 != 0)
         {
-            printf("%d\n", num3);
-            if(num3 - 100 < 10){
-                flag = false;
-            }else{
-                num3 = 0;
-                num4 = 0;
-            }
-        }   
-        if(num4 % 100 != 0)
+            printf("%d\n", num_balls);
+            end = harf;
+        }
+        else
         {
-            printf("%d\n", num4);
-            if(num4 - 100 < 10){
-                flag = false;
-            }else{
-                num3 = 0;
-                num4 = 0;
+            num_balls = 0;
+            for(int i = harf; i < end; i++)
+            {
+                num_balls = num_balls + balls[i];
             }
-        }   
+            printf("%d\n", num_balls);
+            first = harf;
+        }
+        
     }
-       
     return 0;
 }
