@@ -4,13 +4,21 @@
 int main(void)
 {
     bool flag = true;
-    int num1,num2,num3, num4;
-    int balls[10000] , balls2[10000] = {0};
+    int num1 = 0,num2 = 0, num3 = 0, num4 = 0, num5 = 0;
+    int balls[10000] = {0};
+    int balls2[10000] = {0};
     scanf("%d",&num1);
     for (int i = 0; i < num1; i++)
     {
         scanf("%d",&balls[i]);
     }
+
+    for(int i = 0; i < num1; i++)
+    {
+        num5 = num5 + balls[i];
+    }
+
+    printf("%d\n", num5);
 
     while (flag)
     {
@@ -29,19 +37,21 @@ int main(void)
         if(num3 % 100 != 0)
         {
             printf("%d\n", num3);
-            if(num3 == 105){
+            if(num3 - 100 < 10){
                 flag = false;
             }else{
-                num3 = num4 = 0;
+                num3 = 0;
+                num4 = 0;
             }
         }   
         if(num4 % 100 != 0)
         {
             printf("%d\n", num4);
-            if(num4 == 105){
+            if(num4 - 100 < 10){
                 flag = false;
             }else{
-                num3 = num4 = 0;
+                num3 = 0;
+                num4 = 0;
             }
         }   
     }
