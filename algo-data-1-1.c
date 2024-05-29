@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-#define AMAX   990
+#define AMAX   99
 
 typedef struct{
 	char   name[20];
@@ -23,7 +23,7 @@ void dist_age(const PhysCheck dat[], int n, int dist[])
 		dist[i] = 0;
 
 	for(int i = 0; i < n; i++)
-		if (dat[i].age >= 0 && dat[i].age <= AMAX / 10)
+		if (dat[i].age >= 0 && dat[i].age <= AMAX )
 			dist[dat[i].age / 10]++;
 }
 
@@ -55,11 +55,11 @@ int main(void)
 	int adist[AMAX];
 
 	for (int i = 0; i < nx; i++)
-		printf("%-18.18s%4d%5.1f\n", x[i].name, x[i].height, x[i].age);
+		printf("%s,%d,%d\n", x[i].name, x[i].height, x[i].age);
 
 	printf("%5.1f\n", ave_height(x, nx));
 	dist_age(x, nx, adist);
-	for (int i = 0; i <= AMAX / 100; i++){
+	for (int i = 0; i <= AMAX / 10; i++){
 		printf("%d〜：%2d人\n", i * 10, adist[i]);
 	}
 	return 0;
