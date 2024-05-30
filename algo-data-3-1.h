@@ -1,33 +1,35 @@
+#pragma once
 #ifndef ___IntStack
 #define ___IntStack
 
-typedef struct 
-{
-    int max;
-    int ptr;
-    int *stk;
+typedef struct{
+	int max_size;
+	int ptr;
+	int* stk;
 } IntStack;
 
-int Initialize(IntStack *s, int max);
+int InitStack(IntStack* stack, int max);
 
-int Push(IntStack *s, int x);
+int Push(IntStack* stack, int num);
 
-int Pop(IntStack *s, int *x);
+int Pop(IntStack* stack, int* num);
 
-int Peek(const IntStack *s, int *x);
+int Peek(const IntStack* stack, int* x);
 
-void Clear(IntStack *s);
+void ClearStack(IntStack* stack);
 
-int Capacity(const IntStack *s);
+int GetStackCapacity(const IntStack* stack);
 
-int Size(const IntStack *s);
+int GetStackSize(const IntStack* stack);
 
-int IsEmpty(const IntStack *s);
+int IsEmptyStack(const IntStack* stack);
 
-int Search(const IntStack *s);
+int IsFullStack(const IntStack* stack);
 
-void Print(const IntStack *s);
+int SearchStack(const IntStack* stack, int num);
 
-void Terminate(IntStack *s);
+void Print(const IntStack* stack);
+
+void TerminateStack(IntStack* stack);
 
 #endif
