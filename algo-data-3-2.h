@@ -9,7 +9,7 @@ typedef struct{
 	int* que;
 }IntQueue;
 
-int InitQueue(IntQueue* queue, int max);
+int Initialize(IntQueue* queue, int max);
 
 int Enque(IntQueue* queue, int num);
 
@@ -17,20 +17,20 @@ int Deque(IntQueue* queue, int* num);
 
 int Peek(const IntQueue* queue, int* num);
 
-void ClearQueue(IntQueue* queue);
+void Clear(IntQueue* queue);
 
-int GetQueueCapacity(const IntQueue* queue);
+int Capacity(const IntQueue* queue);
 
-int GetQueueSize(const IntQueue* queue);
+int Size(const IntQueue* queue);
 
-int IsEmptyQueue(const IntQueue* queue);
+int IsEmpty(const IntQueue* queue);
 
-int IsFullQueue(const IntQueue* queue);
+int IsFull(const IntQueue* queue);
 
-int SearchQueue(const IntQueue* queue, int num);
+int Search(const IntQueue* queue, int num);
 
-void PrintQueue(const IntQueue* queue);
+void Print(const IntQueue* queue);
 
-void TerminateQueue(IntQueue* queue);
+void Terminate(IntQueue* queue);
 
 #endif
