@@ -103,27 +103,16 @@ void Clear(List *list){
     list->crnt = NULL;
 }
 
-void PrintCount(const List *list){
-    int count = 0;
-    Node *ptr = list->head;
-    while(ptr != NULL){
-        count++;
-        ptr = ptr->next;
+void PrintCurrent(const List *list){
+    if (list->crnt != NULL){
+    }else{
+        PrintMember(&list->crnt->data);
     }
-    printf("%d\n", count);
 }
 
 void PrintLnCurrent(const List *list){
-    PrintMember(&list->crnt->data);
+    PrintCurrent(list);
     putchar('\n');
-}
-
-void Printcurrent(const List *list){
-    Node *ptr = list->crnt;
-    while (ptr != NULL){
-        PrintMember(&ptr->data);
-        ptr = ptr->next;
-    }
 }
 
 void Print(const List *list){
@@ -139,6 +128,24 @@ void Print(const List *list){
 
 void Terminate(List *list){
     Clear(list);
+}
+
+void PrintCount(const List *list){
+    int count = 0;
+    Node *ptr = list->head;
+    while(ptr != NULL){
+        count++;
+        ptr = ptr->next;
+    }
+    printf("%d\n", count);
+}
+
+void Printdata(const List *list){
+    Node *ptr = list->crnt;
+    while (ptr != NULL){
+        PrintMember(&ptr->data);
+        ptr = ptr->next;
+    }
 }
 
 int main(void){
@@ -179,7 +186,7 @@ int main(void){
             Member x;
             scanf("%d", &x.no);
             if(Search(&l, &x, MemberNoCmp) != NULL){
-                Printcurrent(&l);
+                Printdata(&l);
             }else{
                 printf("-1\n");
             }
