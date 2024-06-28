@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main(void) {
     int tree[1023] = {0};
     int height = 0;
     scanf("%d", &height);
