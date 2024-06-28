@@ -40,10 +40,13 @@ void RemoveCurrent(List *list);
 void Clear(List *list);
 
 
-void PrintCurrent(const List *list);
+void PrintCount(const List *list);
 
 
 void PrintLnCurrent(const List *list);
+
+
+void Printcurrent(const List *list);
 
 
 void Print(const List *list);
