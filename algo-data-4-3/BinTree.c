@@ -81,9 +81,18 @@ int Remove(BinNode **root, const Member *x){
 }
 
 void PrintTree(const BinNode *p) {
-    PrintTree(p->left);
-    PrintLnMember(&p->data);    
-    PrintTree(p->right);
+    if(p == NULL){
+        printf("NONE");
+    }else{
+        PrintLnMember(&p->data); 
+         if(p->left != NULL) {
+             PrintTree(p->left);
+        } 
+        if(p->right != NULL) {
+            PrintTree(p->right);
+        }
+    }
+    
 }    
 void FreeTree(BinNode *p) {
     if (p != NULL) {
@@ -91,4 +100,5 @@ void FreeTree(BinNode *p) {
         FreeTree(p->right);
         free(p);
     }
+    p = NULL;
 }

@@ -35,6 +35,7 @@ int main(void){
         }
         else if(mode == 5){
             FreeTree(root);
+            root = NULL;
         }
         else {
             isEnd = true;
