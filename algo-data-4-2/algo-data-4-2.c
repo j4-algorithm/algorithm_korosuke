@@ -1,6 +1,9 @@
 #include <stdio.h>
 
+int c = 0;
+
 int sum(int *num, int begin, int end){
+    c++;
     if(end - begin == 1){
         return num[begin];
     }else{
@@ -18,5 +21,6 @@ int main(void){
     }
     int s = sum(num, 0, n);
     printf("%d\n", s);
+    printf("%d\n", c);
     return 0;
 }
