@@ -2,12 +2,12 @@
 #define ___BinTree
 
 typedef struct __Binode {
-    void *data;
+    int data;
     struct __Binode *left;
     struct __Binode *right;
 } BinNode;
 
-BinNode *Add(BinNode *p, const int *x);
+BinNode *Add(BinNode *p, int x);
 void FreeTree(BinNode *p);
 
 #endif

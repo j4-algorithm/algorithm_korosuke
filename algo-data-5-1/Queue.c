@@ -1,10 +1,11 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include "Queue.h"
 #include "BinTree.h"
 
-int Initialize(Queue* queue, int max, int size){
+int Initialize(Queue* queue, int max){
     queue->num = queue->front = queue->rear = 0;
-    queue->que = calloc(max, size);
+    queue->que = calloc(max, sizeof(BinNode));
     if(queue->que == NULL){
         queue->max = 0;
         return -1;
@@ -13,8 +14,8 @@ int Initialize(Queue* queue, int max, int size){
     return 0;
 }
 
-int Enque(Queue* queue, BinNode* data){
-    if (queue->num>= queue->max){
+int Enque(Queue* queue, BinNode data){
+    if (queue->num >= queue->max){
         return -1;
     }
     else {
@@ -34,7 +35,7 @@ int Deque(Queue* queue, BinNode* data){
     }
     else {
         queue->num--;
-        data = queue->que[queue->front++];
+        *data = queue->que[queue->front++];
         if (queue->front == queue->max){
             queue->front = 0;
         }
@@ -55,6 +56,6 @@ int IsEmpty(Queue* queue){
 void Terminate(Queue* queue){
     if (queue->que != NULL){
         free(queue->que);
-        queue->max = queue->num = queue->front = queue->rear = 0;
     }
+    queue->max = queue->num = queue->front = queue->rear = 0;
 }

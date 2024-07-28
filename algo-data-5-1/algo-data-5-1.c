@@ -2,27 +2,12 @@
 #include<stdlib.h>
 #include "BinTree.h"
 #include "Queue.h"
-#define TREE_HIGHT_MAX 10
 
-int search(BinNode *root, Queue *que, int searchdata){
-    BinNode* node ;
-    int data = 0;
-    Deque(que, node);
-    data = node->data;
-    if(node->left != NULL){
-        Enque(que, node->left);
-    }
-    if(node->right != NULL){
-        Enque(que, node->right);
-    }
-    return data;
-}
 
 int main(void){
-    int numnodes = 10000000;
     Queue que;
     BinNode *root = NULL;
-    Initialize(&que,sizeof(BinNode*), numnodes);
+    Initialize(&que,1023);
     int datanum;
     int nodedata;
     scanf("%d", &datanum);
@@ -32,18 +17,21 @@ int main(void){
     }
     for(int i = 0; i < datanum; i++){
         scanf("%d", &nodedata);
-        root = Add(root, &nodedata);
+        root = Add(root, nodedata);
     }
-    printf("探索するデータを入力してください\n");
-    int searchdata;
-    scanf("%d", &searchdata);
-    Enque(&que, root);
-    int quedata;
-    while (searchdata  != quedata)
-    {
-        quedata = search(root, &que, searchdata);
-        printf("%d\n", quedata);
+    Enque(&que, *root);
+    BinNode tree;
+    for(int i = 0; i < datanum; i++){
+        Deque(&que, &tree);
+        printf("%d %d\n",i+1, tree.data);
+        if(tree.left != NULL){
+            Enque(&que, *tree.left);
+        }
+        if(tree.right != NULL){
+            Enque(&que, *tree.right);
+        }
     }
+   
     FreeTree(root);
     Terminate(&que);
     return 0;
