@@ -29,7 +29,7 @@ int Initialize(ClosedHash *h, int size){
 
 Bucket *Search(const ClosedHash *h, int data){
     int key = hash(data, h->size);
-    Bucket *p = h->table[key];
+    Bucket *p = &h->table[key];
     for(int i = 0; p->stat != Empty && i < h->size; i++){
         if(p->stat == Occupied && p->data == data){
             return p;
