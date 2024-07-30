@@ -28,4 +28,5 @@ int main(void){
         printf("\n");
     }
     FreeTree(tree);
+    return 0;
 }
