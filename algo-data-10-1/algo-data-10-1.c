@@ -8,22 +8,23 @@ int main(void){
     int data;
     int mode;
     int result;
-    Initialize(&h, 10000);
+    Initialize(&h, 13);
+    scanf("%d", &num);
     for(int i = 0; i < num; i++){
         scanf("%d", &mode);
         if(mode == 1){
             scanf("%d", &data);
-            result = Add(&h, data);
+            result = Add(&h, &data);
         }else if(mode == 2){
             scanf("%d", &data);
-            result = Remove(&h, data);
+            result = Remove(&h, &data);
             if(result == 1){
                 printf("Not Found\n");
             }
         }else if(mode == 3){
             scanf("%d", &data);
             Bucket* temp;
-            temp = Search(&h, data);
+            temp = Search(&h, &data);
             if(temp == NULL){
                 printf("Not Found\n");
             }else{

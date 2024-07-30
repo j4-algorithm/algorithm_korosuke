@@ -17,11 +17,11 @@ typedef struct {
 
 int Initialize(ClosedHash *h, int size);
 
-Bucket *Search(const ClosedHash *h, int data);
+Bucket *Search(const ClosedHash *h, int* data);
 
-int Add(ClosedHash *h, int data);
+int Add(ClosedHash *h, int* data);
 
-int Remove(ClosedHash *h, int data);
+int Remove(ClosedHash *h, int* data);
 
 void Dump(const ClosedHash *h);
 
