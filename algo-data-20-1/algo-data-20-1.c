@@ -26,6 +26,15 @@ void Eulergraph(int adjMatrix[size][size], int size){
 }
 
 void HamiltonianPath(int adjMatrix[size][size], int size, int start, int goal){
+    int identity matrix[size][size];
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            identity matrix[i][j] = 0;
+        }
+    }
+    for (int i = 0;i < size; i++){
+        identity matrix[i][i] = 1;
+    }
     
 }
 
@@ -52,7 +61,7 @@ void HamiltonianCycle(int adjMatrix[size][size], int size){
         }
     }
 
-    if(order1 + order2 == size ){
+    if(order[order1] + order[order2] == size ){
         printf("ハミルトン閉路:YES\n");
     }else{
         printf("ハミルトン閉路:NO\n");
