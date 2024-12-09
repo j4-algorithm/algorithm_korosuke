@@ -1,7 +1,7 @@
 #include<stdio.h>
 #define SIZE 100
 void Eulergraph(int adjMatrix[][SIZE], int size){
-    int order[size];
+    int order[SIZE];
     int ordernums = 0;
     for(int i = 0; i < size; i++){
         order[i] = 0;
@@ -37,7 +37,7 @@ void matrixmultiplication(int result[][SIZE], int adjMatrix[][SIZE], int size, i
 }
 
 void matrixaddition(int adjMatrix[][SIZE], int size, int num, int returnnums[][SIZE]){
-    int result[size][size];
+    int result[SIZE][SIZE];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
             result[i][j] = adjMatrix[i][j];
@@ -56,12 +56,13 @@ void matrixaddition(int adjMatrix[][SIZE], int size, int num, int returnnums[][S
 }
 
 void HamiltonianPath(int adjMatrix[][SIZE], int size, int start, int goal){
-    int identitymatrix[size][size];
-    int result[size][size];
-    int returnnums[size][size];
+    int identitymatrix[SIZE][SIZE];
+    int result[SIZE][SIZE];
+    int returnnums[SIZE][SIZE];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
             identitymatrix[i][j] = 0;
+            returnnums[i][j] = 0;
         }
     }
     for (int i = 0;i < size; i++){
@@ -73,15 +74,15 @@ void HamiltonianPath(int adjMatrix[][SIZE], int size, int start, int goal){
         }
     }
     for(int i = 0; i < size -1; i++){
-        if(result[start][goal] == 1){
+        if(result[start][goal] != 0){
             for (int j = 0; j < size; j++){
                 for(int k = 0; k < size; k++){
                     printf("%d ", result[j][k]);
                 }
                 printf("\n");
             }
-            printf("可達:YES\n");
-            break;
+            printf("可達:YES %d\n", i);
+            return;
         }else{
             matrixaddition(adjMatrix, size, i, returnnums);
             for (int j = 0; j < size; j++){
@@ -89,15 +90,22 @@ void HamiltonianPath(int adjMatrix[][SIZE], int size, int start, int goal){
                     result[j][k] += returnnums[j][k];
                 }
             }
+            // for (int j = 0; j < size; j++){
+            //     for(int k = 0; k < size; k++){
+            //         printf("%d ", result[j][k]);
+            //     }
+            //     printf("\n");
+            // }
         }
     }
     printf("可達:NO\n");
+    return;
 }
 
 void HamiltonianCycle(int adjMatrix[][SIZE], int size){
     int order1;
     int order2;
-    int order[size];
+    int order[SIZE];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
             if(adjMatrix[i][j] == 0){
@@ -132,7 +140,7 @@ int main(){
     printf("頂点の数を入力してください: ");
     scanf("%d", &size);
 
-    int adjMatrix[size][size];
+    int adjMatrix[SIZE][SIZE];
     printf("隣接行列を入力してください:\n");
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
