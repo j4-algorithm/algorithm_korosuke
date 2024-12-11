@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "C/C++: clang アクティブ ファイルのビルドとデバッグ",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "preLaunchTask": "C/C++: clang アクティブなファイルのビルド"
+        }
+    ],
+    "version": "2.0.0"
+}

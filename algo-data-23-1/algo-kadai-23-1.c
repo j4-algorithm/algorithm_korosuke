@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-int kmp_match(const char txt[], const char patern[]){
+int kmp_match(const char txt[], const char searchPattern[]){
     int pt = 1;
     int pp = 0;
     int skip[1024];
 
     skip[pt] = 0;
-    while (patern[pt] != '\0') {
-        if (patern[pt] == patern[pp]){
+    while (searchPattern[pt] != '\0') {
+        if (searchPattern[pt] == searchPattern[pp]){
             skip[++pt] = ++pp;
         } else if (pp == 0){
             skip[++pt] = pp;
@@ -16,8 +16,8 @@ int kmp_match(const char txt[], const char patern[]){
         }
     }
     pt = pp = 0;
-    while (txt[pt] != '\0' && patern[pp] != '\0') {
-        if (txt[pt] == patern[pp]) {
+    while (txt[pt] != '\0' && searchPattern[pp] != '\0') {
+        if (txt[pt] == searchPattern[pp]) {
             pt++;
             pp++;
         } else if (pp == 0) {
@@ -27,7 +27,7 @@ int kmp_match(const char txt[], const char patern[]){
         }
     }
 
-    if (patern[pp] == '\0'){
+    if (searchPattern[pp] == '\0'){
         return pt - pp;
     }
 
@@ -36,14 +36,14 @@ int kmp_match(const char txt[], const char patern[]){
 
 int main(void){
     char txt[1024];
-    char patern[1024];
+    char textPattern[1024];
 
     printf("テキスト：");
     scanf("%s", txt);
     printf("パターン：");
-    scanf("%s", patern);
+    scanf("%s", textPattern);
 
-    int result = kmp_match(txt, patern);
+    int result = kmp_match(txt, textPattern);
     if (result != -1) {
         printf("%d\n", result);
     } else {
