@@ -1,91 +1,68 @@
-#include "stdio.h"
-#include "stdbool.h"
-
-#define INFINITY 1000000
+#include<stdio.h>
 
 #define SIZE 100
 
-typedef struct {
-    int visitedNode[SIZE];
-    int visitableNode[SIZE];
-}VNode;
+int min(int a, int b){
+    if(a < b){
+        return a;
+    }else{
+        return b;
+    }
+}
 
-void visitNode(int nodeNum, int edgeCostArray[SIZE][SIZE], int costArr[SIZE], int s, int g, VNode* v);
-
-
-int main(void) {
-    int nodeNum;
-    int edgeCostArray[SIZE][SIZE];
-    int costArray[SIZE];
-    int s;
-    int goal;
-    int minWeight = INFINITY;
-    int minWeightIdx = 0;
-    int result;
-    VNode v;
-
-    scanf("%d", &nodeNum);
-
-    for (int i = 0; i < nodeNum; i++) {
-        for (int j = 0; j < nodeNum; j++) {
-            scanf("%d", &edgeCostArray[i][j]);
+int VertexDetermination(int v, int Set[SIZE],int size){
+    for (int i = 0; i < size; i++){
+        if(Set[i] == v){
+            return 1;
         }
     }
-    goal = nodeNum - 1;
-    scanf("%d", &s);
-
-
-    for (int i = 0; i < nodeNum; i++) {
-        if (i != s) {
-            for (int j = 0; j < nodeNum; j++) {
-                if (j == 0) {
-                    costArray[j] = 0;
-                    v.visitedNode[j] = true;
-                } else {
-                    costArray[j] = INFINITY;
-                    v.visitedNode[j] = false;
-                }
-                v.visitableNode[j] = false;
-            }
-            visitNode(nodeNum, edgeCostArray, costArray, s, i, &v);
-        }else{
-            printf("%d %d\n", s, 0);
-        }
-    }
-
     return 0;
 }
 
-void visitNode(int nodeNum, int edgeCostArray[SIZE][SIZE], int costArr[SIZE], int s, int g, VNode* v) {
-    int minWeight = INFINITY;
-    int minWeightIdx = 0;
-    for (int currentNodeIndex = 0; currentNodeIndex < nodeNum; currentNodeIndex++) {
-        if (edgeCostArray[s][currentNodeIndex] != 0 && v->visitedNode[currentNodeIndex] == false) {
-            v->visitableNode[currentNodeIndex] = true;
+int minindex(int result[], int Set[], int size){
+    int min = __INT32_MAX__;
+    int minindex = -1;
+    for (int i = 0; i < size; i++){
+        if(result[i] < min && VertexDetermination(i, Set, size) == 0){
+            min = result[i];
+            minindex = i;
         }
     }
+    return minindex;
+}
 
-    for (int a = 0; a < nodeNum; a++) {
-        if (v->visitableNode[a] == true) {
-            if (costArr[a] > edgeCostArray[s][a] + costArr[s]) {
-                minWeight = edgeCostArray[s][a] + costArr[s];
-                minWeightIdx = a;
-                for (int b = 0; b < nodeNum; b++) {
-                    if (costArr[b] < minWeight && costArr[b] != 0 && v->visitedNode[b] != 1) {
-                        minWeight = costArr[b];
-                        minWeightIdx = b;
-                    }
-                }
-                costArr[minWeightIdx] = minWeight;
-                v->visitedNode[minWeightIdx] = true;
-                if (minWeightIdx == g) {
-                    printf("%d %d\n", g, minWeight);
-                    return;
-                }
+int main(void){
+    int adjMatrix[SIZE][SIZE];
+    int result[SIZE];
+    int Set[SIZE];
+    int vertex_top = 0;
+    int size;
+    int start;
+
+    scanf("%d", &size);
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            scanf("%d", &adjMatrix[i][j]);
+        }
+    }
+    scanf("%d", &start);
+
+    for (int i = 0; i < size; i++){
+        result[i] = __INT32_MAX__;
+        Set[i] = __INT32_MAX__;
+    }
+    result[start] = 0;
+    for (int i = 0; i < size; i++){
+        int v = minindex(result, Set, size);
+        Set[vertex_top++] = v;
+        for (int j = 0; j < size; j++){
+            if(adjMatrix[v][j] != 0 && VertexDetermination(j, Set, size) == 0){
+                result[j] = min(result[j], result[v] + adjMatrix[v][j]);
             }
         }
     }
-    visitNode(nodeNum, edgeCostArray, costArr, minWeightIdx, g, v);
-
-    return;
+    for (int i = 0; i < size; i++){
+        printf("%d %d\n", i, result[i]);
+    }
+    return 0;
 }
